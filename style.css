@@ -1,0 +1,219 @@
+:root {
+    --font-main: 'Outfit', sans-serif;
+    --bg-color: #f0f2f5;
+    --text-color: #333;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.title-container {
+    background-color: #ffffff;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+}
+
+.title-container h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title-container p {
+    color: #666;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.color-generator {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.palette-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+
+.color-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: flex 0.3s ease;
+    min-height: 50vh;
+}
+
+.color-box:hover {
+    flex: 1.2;
+}
+
+.color-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.hex-code {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.hex-code:hover {
+    transform: scale(1.05);
+}
+
+.copy-btn {
+    background: transparent;
+    border: 2px solid currentColor;
+    /* Takes text color of parent */
+    color: inherit;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.color-box:hover .copy-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.copy-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+.generate-btn {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background: #111;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    z-index: 20;
+    letter-spacing: 0.5px;
+}
+
+.generate-btn:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.generate-btn:active {
+    transform: translateX(-50%) translateY(1px);
+}
+
+/* Toast notification for copy */
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 100;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .palette-container {
+        flex-direction: column;
+    }
+
+    .color-box {
+        min-height: 15vh;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 2rem;
+    }
+
+    .color-box:hover {
+        flex: 1;
+        /* Disable expansion on mobile */
+    }
+
+    .color-info {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .copy-btn {
+        opacity: 1;
+        /* Always visible on mobile */
+        transform: none;
+    }
+
+    .generate-btn {
+        width: 90%;
+        bottom: 1rem;
+    }
+}
