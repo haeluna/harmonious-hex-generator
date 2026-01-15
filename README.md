@@ -3,7 +3,6 @@
 A beautiful, responsive web application that generates harmonious, WCAG-compliant color palettes.
 
 ![Project Preview](preview.png)
-*(Note: Add a screenshot of the app here if available, or remove this line)*
 
 ## 🚀 Features
 
